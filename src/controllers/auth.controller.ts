@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import AuthModel from "models/auth.model";
+import AuthModel from "../models/auth.model";
 
 export default class AuthController {
     private authModel: AuthModel = new AuthModel();

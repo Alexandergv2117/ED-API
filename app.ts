@@ -22,7 +22,7 @@ export default class App {
     }
 
     private initializeMiddlewares() {
-        this.app.use(cors());
+        this.app.use(cors(corsOptions));
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: false }));
     }

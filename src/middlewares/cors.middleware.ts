@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const corsOptions = {
     origin: (origin: any, callback: any) => {
         // console.log(origin);
         if (process.env.NODE_ENV === 'production') {
             // En producción, permitir solo orígenes específicos
-            const whitelist = ['http://localhost:3000', 'https://webbetaautopartes.azurewebsites.net/'];
+            const whitelist = ['http://localhost:5000', 'https://example-domain/'];
             if (whitelist.indexOf(origin) !== -1 || !origin) {
                 callback(null, true);
             } else {
