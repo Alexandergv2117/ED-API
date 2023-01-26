@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+    "types": ["node", "jest"],
+        "module": "commonjs",
+        "target": "es6",
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+        "sourceMap": true,
+        "outDir": "dist",
+        "baseUrl": "src"
+    },
+    "include": [
+        "src/**/*",
+        "test/**/*",
+        "jest.config.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
