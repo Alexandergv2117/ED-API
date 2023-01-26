@@ -1,22 +1,27 @@
 {
     "compilerOptions": {
-    "types": ["node", "jest"],
-        "module": "commonjs",
-        "target": "es6",
-        "noImplicitAny": true,
-        "moduleResolution": "node",
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-        "sourceMap": true,
-        "outDir": "dist",
-        "baseUrl": "src"
+      "outDir": "./dist",
+      "resolveJsonModule": true,
+      /* Visit https://aka.ms/tsconfig to read more about this file */
+      "types": ["node", "jest"],
+      "target": "es6",
+      /* Modules */
+      "module": "commonjs",
+      "sourceMap": true,
+      "esModuleInterop": true,
+      "forceConsistentCasingInFileNames": true,
+      "baseUrl": "src",
+  
+      /* Type Checking */
+      "strict": true,
+      "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
     },
-    "include": [
-        "src/**/*",
-        "test/**/*",
-        "jest.config.ts"
+    "include":[
+      "src/**/*",
+      "test/**/*",
+      "jest.config.ts",
+      "app.ts",
+      "index.ts",
     ],
-    "exclude": [
-        "node_modules"
-    ]
-}
+  }
+  
