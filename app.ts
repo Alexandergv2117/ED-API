@@ -1,9 +1,8 @@
 import express, { Express, NextFunction, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import RouterAPI from './src/router/index'
+import RouterAPI from './src/router/index';
 import { corsOptions } from './src/middlewares/cors.middleware';
-
 
 export default class App {
     public app: Express;
@@ -18,7 +17,6 @@ export default class App {
 
         this.initializeMiddlewares();
         this.initializeRoutes(this.routerAPI);
-
     }
 
     private initializeMiddlewares() {

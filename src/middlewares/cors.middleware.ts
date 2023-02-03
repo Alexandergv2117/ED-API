@@ -4,7 +4,10 @@ export const corsOptions = {
         // console.log(origin);
         if (process.env.NODE_ENV === 'production') {
             // En producción, permitir solo orígenes específicos
-            const whitelist = ['http://localhost:5000', 'https://example-domain/'];
+            const whitelist = [
+                'http://localhost:5000',
+                'https://example-domain/',
+            ];
             if (whitelist.indexOf(origin) !== -1 || !origin) {
                 callback(null, true);
             } else {

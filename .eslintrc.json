@@ -2,16 +2,19 @@
     "parser": "@typescript-eslint/parser",
     "plugins": ["@typescript-eslint"],
     "extends": [
-      "eslint:recommended",
-      "plugin:@typescript-eslint/eslint-recommended",
-      "plugin:@typescript-eslint/recommended"
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
     "parserOptions": {
-      "ecmaVersion": 2018,
-      "sourceType": "module"
+        "ecmaVersion": 2018,
+        "sourceType": "module"
     },
     "rules": {
-      // personal rules
+        // personal rules
+        "no-unused-vars": "warn",
+        "no-console": "warn",
+        "no-undef": "error",
+        "no-constant-condition": "warn"
     }
-  }
-  
+}

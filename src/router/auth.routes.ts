@@ -1,5 +1,5 @@
-import { Router } from "express";
-import AuthController from "../controllers/auth.controller";
+import { Router } from 'express';
+import AuthController from '../controllers/auth.controller';
 
 export default class AuthRouter {
     public router: Router;
@@ -12,20 +12,21 @@ export default class AuthRouter {
     }
 
     private initializeRoutes(router: Router, Controller: AuthController) {
-        router.route("/")
+        router
+            .route('/')
             .get((req, res) => {
-                res.send("getUser Data");
+                res.send('getUser Data');
             })
             .post((req, res) => {
-                res.send("create user");
+                res.send('create user');
             })
             .put((req, res) => {
-                res.send("modify account");
+                res.send('modify account');
             })
             .delete((req, res) => {
-                res.send("delete account");
-            })
+                res.send('delete account');
+            });
 
-        router.post("/login", Controller.login);
+        router.post('/login', Controller.login);
     }
 }

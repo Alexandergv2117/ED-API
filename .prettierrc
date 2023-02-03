@@ -1,6 +1,10 @@
 {
     "trailingComma": "all",
+    "semi": true,
     "singleQuote": true,
     "tabWidth": 4,
-    "useTabs": false
+    "useTabs": false,
+    "object-property-newline": [
+        {"allowMultiplePropertiesPerLine": false}
+    ]
 }

@@ -12,17 +12,16 @@ export default class Connect {
             port: Number(process.env.DB_PORT) || 0,
             options: {
                 encrypt: false,
-                trustServerCertificate: false
-            }
-
-        }
+                trustServerCertificate: false,
+            },
+        };
         try {
             const pool = await sql.connect(DB_CONNECTION);
             return pool;
-        }
-        catch (e) {
-            console.log(`\n\nError de conexion a la base de datos: \n\n${e}\n\n`);
+        } catch (e) {
+            console.log(
+                `\n\nError de conexion a la base de datos: \n\n${e}\n\n`,
+            );
         }
     }
-
 }

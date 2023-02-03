@@ -1,27 +1,20 @@
 {
     "compilerOptions": {
-      "outDir": "./dist",
-      "resolveJsonModule": true,
-      /* Visit https://aka.ms/tsconfig to read more about this file */
-      "types": ["node", "jest"],
-      "target": "es6",
-      /* Modules */
-      "module": "commonjs",
-      "sourceMap": true,
-      "esModuleInterop": true,
-      "forceConsistentCasingInFileNames": true,
-      "baseUrl": "src",
-  
-      /* Type Checking */
-      "strict": true,
-      "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+        "outDir": "./dist",
+        "resolveJsonModule": true,
+        /* Visit https://aka.ms/tsconfig to read more about this file */
+        "types": ["node", "jest"],
+        "target": "es6",
+        /* Modules */
+        "module": "commonjs",
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "baseUrl": "src",
+
+        /* Type Checking */
+        "strict": true,
+        "skipLibCheck": true /* Skip type checking all .d.ts files. */
     },
-    "include":[
-      "src/**/*",
-      "test/**/*",
-      "jest.config.ts",
-      "app.ts",
-      "index.ts",
-    ],
-  }
-  
+    "include": ["src/**/*", "test/**/*", "jest.config.ts", "app.ts", "index.ts"]
+}

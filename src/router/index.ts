@@ -11,16 +11,13 @@ export default class RouterAPI {
         // add more routes here
         this.authRouter = new AuthRouter();
 
-        this.initializeRoutes(
-            this.authRouter
-        );
+        this.initializeRoutes(this.authRouter);
     }
 
     private initializeRoutes(
         // add more routes here
-        authRouter: AuthRouter
+        authRouter: AuthRouter,
     ) {
         this.router.use('/auth', authRouter.router);
     }
 }
-

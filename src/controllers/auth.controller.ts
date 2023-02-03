@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import AuthModel from "../models/auth.model";
+import { Request, Response } from 'express';
+import AuthModel from '../models/auth.model';
 
 export default class AuthController {
     private authModel: AuthModel = new AuthModel();
@@ -11,7 +11,7 @@ export default class AuthController {
             return result;
         } catch (error) {
             console.log(error);
-            res.status(200).send({ message: "LOGIN ROUTE" })
+            res.status(200).send({ message: 'LOGIN ROUTE' });
         }
     }
 }
