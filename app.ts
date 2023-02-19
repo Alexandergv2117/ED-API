@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import RouterAPI from './src/router/index';
 import { corsOptions } from './src/middlewares/cors.middleware';
+import Database from './src/db/config';
 
 export default class App {
     public app: Express;
@@ -23,6 +24,7 @@ export default class App {
         this.app.use(cors(corsOptions));
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: false }));
+        Database.testConnection();
     }
 
     private initializeRoutes(routes: RouterAPI) {

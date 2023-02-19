@@ -1,17 +1,16 @@
 import { Request, Response } from 'express';
-import AuthModel from '../models/auth.model';
+import StudentModel from '../models/students.model';
+
+const studentModel = new StudentModel();
 
 export default class AuthController {
-    private authModel: AuthModel = new AuthModel();
-
     public async login(req: Request, res: Response) {
         try {
-            const { user, password } = req.body;
-            const result = await this.authModel.login(user, password);
-            return result;
+            const result = await studentModel.login();
+            return res.status(200).send(result);
         } catch (error) {
             console.log(error);
-            res.status(200).send({ message: 'LOGIN ROUTE' });
+            return res.status(200).send({ message: 'LOGIN ROUTE' });
         }
     }
 }

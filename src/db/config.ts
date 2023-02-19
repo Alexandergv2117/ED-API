@@ -1,27 +1,48 @@
-import sql from 'mssql';
+import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
 
-export default class Connect {
-    public async getConnection() {
-        dotenv.config();
-        const DB_CONNECTION = {
-            user: process.env.DB_USER || '',
-            password: process.env.DB_PASSWORD || '',
-            server: process.env.DB_SERVER || '',
-            database: process.env.DB_NAME || '',
-            port: Number(process.env.DB_PORT) || 0,
-            options: {
-                encrypt: false,
-                trustServerCertificate: false,
-            },
-        };
+dotenv.config();
+
+class Database {
+    private static instance: Database;
+    private sequelize: Sequelize;
+
+    private constructor() {
+        const dbPassword = process.env.DB_PASSWORD || '';
+        const dbName = process.env.DB_NAME || '';
+        const dbHost = process.env.DB_HOST || '';
+        const dbPort = process.env.DB_PORT || '';
+
+        this.sequelize = new Sequelize(dbName, 'root', dbPassword, {
+            host: dbHost,
+            port: parseInt(dbPort),
+            dialect: 'mysql',
+        });
+    }
+
+    public static getInstance(): Database {
+        if (!Database.instance) {
+            Database.instance = new Database();
+        }
+        return Database.instance;
+    }
+
+    public async testConnection(): Promise<void> {
         try {
-            const pool = await sql.connect(DB_CONNECTION);
-            return pool;
-        } catch (e) {
-            console.log(
-                `\n\nError de conexion a la base de datos: \n\n${e}\n\n`,
-            );
+            await this.sequelize.authenticate();
+            console.log('Connection has been established successfully.');
+        } catch (error) {
+            console.error('Unable to connect to the database:', error);
         }
     }
+
+    public async closeConnection(): Promise<void> {
+        await this.sequelize.close();
+    }
+
+    public getSequelize(): Sequelize {
+        return this.sequelize;
+    }
 }
+
+export default Database.getInstance();

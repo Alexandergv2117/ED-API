@@ -1,4 +1,12 @@
 {
+    "env": {
+        "PORT": true,
+        "DB_USER": true,
+        "DB_PASSWORD": true,
+        "DB_NAME": true,
+        "DB_HOST": true,
+        "DB_PORT": true
+    },
     "parser": "@typescript-eslint/parser",
     "plugins": ["@typescript-eslint"],
     "extends": [

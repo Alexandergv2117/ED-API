@@ -12,21 +12,7 @@ export default class AuthRouter {
     }
 
     private initializeRoutes(router: Router, Controller: AuthController) {
-        router
-            .route('/')
-            .get((req, res) => {
-                res.send('getUser Data');
-            })
-            .post((req, res) => {
-                res.send('create user');
-            })
-            .put((req, res) => {
-                res.send('modify account');
-            })
-            .delete((req, res) => {
-                res.send('delete account');
-            });
-
+        router.get('/login', Controller.login);
         router.post('/login', Controller.login);
     }
 }
