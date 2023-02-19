@@ -1,5 +1,8 @@
 {
     "env": {
+        "browser": true,
+        "node": true,
+        "es6": true,
         "PORT": true,
         "DB_USER": true,
         "DB_PASSWORD": true,
