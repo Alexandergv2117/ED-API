@@ -1,62 +1,53 @@
 import { Model, DataTypes } from 'sequelize';
 import db from '../db/config';
 
-class Student extends Model {
-    public async login() {
-        try {
-            return await Student.findAll();
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
+class QuarterDetail extends Model {
     public async migration() {
         try {
-            return await Student.findAll();
+            return await QuarterDetail.findAll();
         } catch (error) {
             console.log(error);
         }
     }
 }
 
-Student.init(
+QuarterDetail.init(
     {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        matricula: {
+        periodo_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        carrera_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        personal_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        materia_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        grupo: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        nombre: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        apellido_paterno: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        apellido_materno: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        correo: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            field: 'email',
-        },
-        password: {
-            type: DataTypes.STRING,
+        plan_id: {
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
     },
     {
-        tableName: 'alumno',
+        tableName: 'periodo_detalle',
         sequelize: db.getSequelize(),
         timestamps: false,
     },
 );
 
-export default Student;
+export default QuarterDetail;

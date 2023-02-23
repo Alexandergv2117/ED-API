@@ -1,62 +1,49 @@
 import { Model, DataTypes } from 'sequelize';
 import db from '../db/config';
 
-class Student extends Model {
-    public async login() {
-        try {
-            return await Student.findAll();
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
+class Course extends Model {
     public async migration() {
         try {
-            return await Student.findAll();
+            return await Course.findAll();
         } catch (error) {
             console.log(error);
         }
     }
 }
 
-Student.init(
+Course.init(
     {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        matricula: {
+        clave: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        nombre: {
+        materia: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        apellido_paterno: {
+        abrebiatura: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        apellido_materno: {
-            type: DataTypes.STRING,
+        creditos: {
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
-        correo: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            field: 'email',
-        },
-        password: {
-            type: DataTypes.STRING,
+        departamento_id: {
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
     },
     {
-        tableName: 'alumno',
+        tableName: 'materia',
         sequelize: db.getSequelize(),
         timestamps: false,
     },
 );
 
-export default Student;
+export default Course;
