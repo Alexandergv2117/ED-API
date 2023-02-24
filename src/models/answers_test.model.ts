@@ -29,7 +29,7 @@ AnswerTest.init(
     },
     {
         tableName: 'respuesta_evaluacion',
-        sequelize: db.getSequelize(),
+        sequelize: db.getSequelizeMigration(),
         timestamps: false,
     },
 );

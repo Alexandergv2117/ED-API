@@ -29,7 +29,7 @@ Coordinator.init(
     },
     {
         tableName: 'coordinador',
-        sequelize: db.getSequelize(),
+        sequelize: db.getSequelizeMigration(),
         timestamps: false,
     },
 );

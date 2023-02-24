@@ -29,7 +29,7 @@ AnswerTestComment.init(
     },
     {
         tableName: 'respuesta_evaluacion_comentario',
-        sequelize: db.getSequelize(),
+        sequelize: db.getSequelizeMigration(),
         timestamps: false,
     },
 );

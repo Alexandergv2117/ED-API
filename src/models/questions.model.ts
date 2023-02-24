@@ -29,7 +29,7 @@ Question.init(
     },
     {
         tableName: 'pregunta',
-        sequelize: db.getSequelize(),
+        sequelize: db.getSequelizeMigration(),
         timestamps: false,
     },
 );

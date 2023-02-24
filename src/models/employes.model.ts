@@ -45,7 +45,7 @@ Employee.init(
     },
     {
         tableName: 'personal',
-        sequelize: db.getSequelize(),
+        sequelize: db.getSequelizeMigration(),
         timestamps: false,
     },
 );

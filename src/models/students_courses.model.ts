@@ -37,7 +37,7 @@ StudentCourse.init(
     },
     {
         tableName: 'lista_alumno_periodo',
-        sequelize: db.getSequelize(),
+        sequelize: db.getSequelizeMigration(),
         timestamps: false,
     },
 );

@@ -29,7 +29,7 @@ Department.init(
     },
     {
         tableName: 'departamento',
-        sequelize: db.getSequelize(),
+        sequelize: db.getSequelizeMigration(),
         timestamps: false,
     },
 );

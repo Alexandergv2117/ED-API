@@ -54,7 +54,7 @@ Student.init(
     },
     {
         tableName: 'alumno',
-        sequelize: db.getSequelize(),
+        sequelize: db.getSequelizeMigration(),
         timestamps: false,
     },
 );

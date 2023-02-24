@@ -6,18 +6,35 @@ dotenv.config();
 class Database {
     private static instance: Database;
     private sequelize: Sequelize;
+    private sequelizeMigration: Sequelize;
 
     private constructor() {
         const dbPassword = process.env.DB_PASSWORD || '';
         const dbName = process.env.DB_NAME || '';
         const dbHost = process.env.DB_HOST || '';
-        const dbPort = process.env.DB_PORT || '';
+        const dbPort = parseInt(process.env.DB_PORT || '3306');
+
+        const dbPasswordMigration = process.env.DB_PASSWORD_EVALUA || '';
+        const dbNameMigration = process.env.DB_NAME_EVALUA || '';
+        const dbHostMigration = process.env.DB_HOST_EVALUA || '';
+        const dbPortMigration = parseInt(process.env.DB_PORT_EVALUA || '3306');
 
         this.sequelize = new Sequelize(dbName, 'root', dbPassword, {
             host: dbHost,
-            port: parseInt(dbPort),
+            port: dbPort,
             dialect: 'mysql',
         });
+
+        this.sequelizeMigration = new Sequelize(
+            dbNameMigration,
+            'root',
+            dbPasswordMigration,
+            {
+                host: dbHostMigration,
+                port: dbPortMigration,
+                dialect: 'mysql',
+            },
+        );
     }
 
     public static getInstance(): Database {
@@ -30,18 +47,37 @@ class Database {
     public async testConnection(): Promise<void> {
         try {
             await this.sequelize.authenticate();
-            console.log('Connection has been established successfully.');
+            console.log(
+                'Connection to main database has been established successfully.',
+            );
         } catch (error) {
-            console.error('Unable to connect to the database:', error);
+            console.error('Unable to connect to the main database:', error);
+        }
+
+        try {
+            await this.sequelizeMigration.authenticate();
+            console.log(
+                'Connection to migration database has been established successfully.',
+            );
+        } catch (error) {
+            console.error(
+                'Unable to connect to the migration database:',
+                error,
+            );
         }
     }
 
     public async closeConnection(): Promise<void> {
         await this.sequelize.close();
+        await this.sequelizeMigration.close();
     }
 
     public getSequelize(): Sequelize {
         return this.sequelize;
+    }
+
+    public getSequelizeMigration(): Sequelize {
+        return this.sequelizeMigration;
     }
 }
 

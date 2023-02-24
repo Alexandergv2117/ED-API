@@ -33,7 +33,7 @@ Program.init(
     },
     {
         tableName: 'plan',
-        sequelize: db.getSequelize(),
+        sequelize: db.getSequelizeMigration(),
         timestamps: false,
     },
 );

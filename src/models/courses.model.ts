@@ -41,7 +41,7 @@ Course.init(
     },
     {
         tableName: 'materia',
-        sequelize: db.getSequelize(),
+        sequelize: db.getSequelizeMigration(),
         timestamps: false,
     },
 );

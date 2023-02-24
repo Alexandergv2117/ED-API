@@ -37,7 +37,7 @@ Major.init(
     },
     {
         tableName: 'carrera',
-        sequelize: db.getSequelize(),
+        sequelize: db.getSequelizeMigration(),
         timestamps: false,
     },
 );
