@@ -84,7 +84,8 @@ Cambiamos el predeterminado
 
 Seleccionamos prettier
 ![image](https://user-images.githubusercontent.com/85083888/219972614-b9cd6b27-0b1e-49e1-a223-e863d7b11d88.png)
-#Estructura de carpetas:
+# Estructura de carpetas:
+```
 ├── src
 │   ├── controllers
 │   │   └── AuthController.ts
@@ -98,10 +99,10 @@ Seleccionamos prettier
 ├── app.ts
 ├── index.ts
 └── test
+```
 
 
-
-#Explicación:
+# Explicación:
 
 `controllers`: carpeta que contiene todos los controladores para manejar las solicitudes HTTP entrantes. En este ejemplo se encuentra el archivo `AuthController.ts` que exporta una clase que maneja la solicitud login.
 
