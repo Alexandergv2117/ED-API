@@ -84,3 +84,38 @@ Cambiamos el predeterminado
 
 Seleccionamos prettier
 ![image](https://user-images.githubusercontent.com/85083888/219972614-b9cd6b27-0b1e-49e1-a223-e863d7b11d88.png)
+# Estructura de carpetas:
+```
+├── src
+│   ├── controllers
+│   │   └── AuthController.ts
+│   ├── middlewares
+│   │   └── corsOptions.ts
+│   ├── models
+│   │   └── AnswerTestComment.ts
+│   └── routers
+│       ├── AuthRouter.ts
+│       └── index.ts
+├── app.ts
+├── index.ts
+└── test
+```
+
+
+# Explicación:
+
+`controllers`: carpeta que contiene todos los controladores para manejar las solicitudes HTTP entrantes. En este ejemplo se encuentra el archivo `AuthController.ts` que exporta una clase que maneja la solicitud login.
+
+`middlewares`: carpeta que contiene todos los middleware personalizados para la aplicación. En este ejemplo se encuentra el archivo `corsOptions.ts` que exporta una constante con las opciones de configuración para permitir solicitudes `CORS`.
+
+`models`: carpeta que contiene todos los modelos de datos para interactuar con la base de datos. En este ejemplo se encuentra el archivo `AnswerTestComment.ts` que exporta una clase que extiende el modelo Sequelize y define la estructura de la tabla respuesta_evaluacion_comentario.
+
+`router`: carpeta que contiene todas las rutas de la aplicación. En este ejemplo se encuentran dos archivos:
+
+`AuthRouter`.ts: exporta una clase que define las rutas para el controlador `AuthController`.
+
+En la carpeta `router` sobre el archivo `index.ts`: exporta una clase que define todas las rutas de la aplicación. En este archivo se importa la clase `AuthRouter` y se define la ruta base /auth para todas las rutas del controlador `AuthController`.
+
+`app.ts` es el archivo que contiene la configuración y la instancia de la aplicación Express.
+`index.ts` es el archivo que inicia la aplicación y la hace escuchar en el puerto especificado.
+`test` es la carpeta que contiene los tests de la aplicación.
