@@ -12,12 +12,9 @@ class Database {
         const dbPassword = process.env.DB_PASSWORD || '';
         const dbName = process.env.DB_NAME || '';
         const dbHost = process.env.DB_HOST || '';
-        const dbPort = parseInt(process.env.DB_PORT || '3306');
+        const dbPort = parseInt(process.env.DB_PORT || '');
 
-        const dbPasswordMigration = process.env.DB_PASSWORD_EVALUA || '';
         const dbNameMigration = process.env.DB_NAME_EVALUA || '';
-        const dbHostMigration = process.env.DB_HOST_EVALUA || '';
-        const dbPortMigration = parseInt(process.env.DB_PORT_EVALUA || '3306');
 
         this.sequelize = new Sequelize(dbName, 'root', dbPassword, {
             host: dbHost,
@@ -28,10 +25,10 @@ class Database {
         this.sequelizeMigration = new Sequelize(
             dbNameMigration,
             'root',
-            dbPasswordMigration,
+            dbPassword,
             {
-                host: dbHostMigration,
-                port: dbPortMigration,
+                host: dbHost,
+                port: dbPort,
                 dialect: 'mysql',
             },
         );
