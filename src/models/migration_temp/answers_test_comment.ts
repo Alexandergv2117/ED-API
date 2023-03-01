@@ -1,37 +1,37 @@
 import { Model, DataTypes } from 'sequelize';
-import db from '../db/config';
+import db from '../../db/config';
 
-class Coordinator extends Model {
+class AnswerTestComment extends Model {
     public async migration() {
         try {
-            return await Coordinator.findAll();
+            return await AnswerTestComment.findAll();
         } catch (error) {
             console.log(error);
         }
     }
 }
 
-Coordinator.init(
+AnswerTestComment.init(
     {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        personal_id: {
+        periodo_detalle_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        carrera_id: {
-            type: DataTypes.INTEGER,
+        comentario: {
+            type: DataTypes.STRING,
             allowNull: false,
         },
     },
     {
-        tableName: 'coordinador',
+        tableName: 'respuesta_evaluacion_comentario',
         sequelize: db.getSequelizeMigration(),
         timestamps: false,
     },
 );
 
-export default Coordinator;
+export default AnswerTestComment;

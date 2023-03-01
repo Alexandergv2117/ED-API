@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import StudentModel from '../models/students.model';
+import StudentModel from '../models/migration_temp/students.model';
 
 const studentModel = new StudentModel();
 

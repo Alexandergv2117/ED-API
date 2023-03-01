@@ -1,5 +1,5 @@
 import { Model, DataTypes } from 'sequelize';
-import db from '../db/config';
+import db from '../../db/config';
 
 class Question extends Model {
     public async migration() {

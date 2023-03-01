@@ -1,45 +1,37 @@
 import { Model, DataTypes } from 'sequelize';
-import db from '../db/config';
+import db from '../../db/config';
 
-class StudentCourse extends Model {
+class Coordinator extends Model {
     public async migration() {
         try {
-            return await StudentCourse.findAll();
+            return await Coordinator.findAll();
         } catch (error) {
             console.log(error);
         }
     }
 }
 
-StudentCourse.init(
+Coordinator.init(
     {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        alumno_id: {
+        personal_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        periodo_detalle_id: {
+        carrera_id: {
             type: DataTypes.INTEGER,
-            allowNull: false,
-        },
-        calificacion: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
-        estado: {
-            type: DataTypes.STRING,
             allowNull: false,
         },
     },
     {
-        tableName: 'lista_alumno_periodo',
+        tableName: 'coordinador',
         sequelize: db.getSequelizeMigration(),
         timestamps: false,
     },
 );
 
-export default StudentCourse;
+export default Coordinator;

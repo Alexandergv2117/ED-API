@@ -1,17 +1,17 @@
 import { Model, DataTypes } from 'sequelize';
-import db from '../db/config';
+import db from '../../db/config';
 
-class Program extends Model {
+class Course extends Model {
     public async migration() {
         try {
-            return await Program.findAll();
+            return await Course.findAll();
         } catch (error) {
             console.log(error);
         }
     }
 }
 
-Program.init(
+Course.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -19,23 +19,31 @@ Program.init(
             primaryKey: true,
         },
         clave: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
-        plan: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        carrera_id: {
+        materia: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        abrebiatura: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        creditos: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        departamento_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
     },
     {
-        tableName: 'plan',
+        tableName: 'materia',
         sequelize: db.getSequelizeMigration(),
         timestamps: false,
     },
 );
 
-export default Program;
+export default Course;

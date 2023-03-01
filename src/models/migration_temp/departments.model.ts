@@ -1,37 +1,37 @@
 import { Model, DataTypes } from 'sequelize';
-import db from '../db/config';
+import db from '../../db/config';
 
-class AnswerTestComment extends Model {
+class Department extends Model {
     public async migration() {
         try {
-            return await AnswerTestComment.findAll();
+            return await Department.findAll();
         } catch (error) {
             console.log(error);
         }
     }
 }
 
-AnswerTestComment.init(
+Department.init(
     {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        periodo_detalle_id: {
-            type: DataTypes.INTEGER,
+        departamento: {
+            type: DataTypes.STRING,
             allowNull: false,
         },
-        comentario: {
+        abrebiatura: {
             type: DataTypes.STRING,
             allowNull: false,
         },
     },
     {
-        tableName: 'respuesta_evaluacion_comentario',
+        tableName: 'departamento',
         sequelize: db.getSequelizeMigration(),
         timestamps: false,
     },
 );
 
-export default AnswerTestComment;
+export default Department;

@@ -5,8 +5,8 @@ dotenv.config();
 
 class Database {
     private static instance: Database;
-    private sequelize: Sequelize;
-    private sequelizeMigration: Sequelize;
+    public sequelize: Sequelize;
+    public sequelizeMigration: Sequelize;
 
     private constructor() {
         const dbPassword = process.env.DB_PASSWORD || '';

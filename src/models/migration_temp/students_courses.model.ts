@@ -1,41 +1,45 @@
 import { Model, DataTypes } from 'sequelize';
-import db from '../db/config';
+import db from '../../db/config';
 
-class Quarter extends Model {
+class StudentCourse extends Model {
     public async migration() {
         try {
-            return await Quarter.findAll();
+            return await StudentCourse.findAll();
         } catch (error) {
             console.log(error);
         }
     }
 }
 
-Quarter.init(
+StudentCourse.init(
     {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        clave: {
+        alumno_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        periodo: {
-            type: DataTypes.STRING,
+        periodo_detalle_id: {
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
-        encuesta_periodo: {
-            type: DataTypes.BOOLEAN,
+        calificacion: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        estado: {
+            type: DataTypes.STRING,
             allowNull: false,
         },
     },
     {
-        tableName: 'periodo',
+        tableName: 'lista_alumno_periodo',
         sequelize: db.getSequelizeMigration(),
         timestamps: false,
     },
 );
 
-export default Quarter;
+export default StudentCourse;

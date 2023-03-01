@@ -1,22 +1,34 @@
 import { Model, DataTypes } from 'sequelize';
-import db from '../db/config';
+import db from '../../db/config';
 
-class Employee extends Model {
+class Student extends Model {
+    public async login() {
+        try {
+            return await Student.findAll();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     public async migration() {
         try {
-            return await Employee.findAll();
+            return await Student.findAll();
         } catch (error) {
             console.log(error);
         }
     }
 }
 
-Employee.init(
+Student.init(
     {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
+        },
+        matricula: {
+            type: DataTypes.STRING,
+            allowNull: false,
         },
         nombre: {
             type: DataTypes.STRING,
@@ -30,13 +42,10 @@ Employee.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        sexo: {
+        correo: {
             type: DataTypes.STRING,
             allowNull: false,
-        },
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false,
+            field: 'email',
         },
         password: {
             type: DataTypes.STRING,
@@ -44,10 +53,10 @@ Employee.init(
         },
     },
     {
-        tableName: 'personal',
+        tableName: 'alumno',
         sequelize: db.getSequelizeMigration(),
         timestamps: false,
     },
 );
 
-export default Employee;
+export default Student;

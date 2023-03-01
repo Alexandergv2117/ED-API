@@ -1,45 +1,37 @@
 import { Model, DataTypes } from 'sequelize';
-import db from '../db/config';
+import db from '../../db/config';
 
-class Major extends Model {
+class QuestionTest extends Model {
     public async migration() {
         try {
-            return await Major.findAll();
+            return await QuestionTest.findAll();
         } catch (error) {
             console.log(error);
         }
     }
 }
 
-Major.init(
+QuestionTest.init(
     {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        carrera: {
-            type: DataTypes.STRING,
+        periodo_detalle_id: {
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
-        abrebiatura: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        nivel: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        departamento_id: {
+        pregunta_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
     },
     {
-        tableName: 'carrera',
+        tableName: 'pregunta_evaluacion',
         sequelize: db.getSequelizeMigration(),
         timestamps: false,
     },
 );
 
-export default Major;
+export default QuestionTest;

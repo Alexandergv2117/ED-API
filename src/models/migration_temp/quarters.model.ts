@@ -1,37 +1,41 @@
 import { Model, DataTypes } from 'sequelize';
-import db from '../db/config';
+import db from '../../db/config';
 
-class AnswerTest extends Model {
+class Quarter extends Model {
     public async migration() {
         try {
-            return await AnswerTest.findAll();
+            return await Quarter.findAll();
         } catch (error) {
             console.log(error);
         }
     }
 }
 
-AnswerTest.init(
+Quarter.init(
     {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
-        pregunta_evaluacion_id: {
+        clave: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        puntos: {
-            type: DataTypes.INTEGER,
+        periodo: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        encuesta_periodo: {
+            type: DataTypes.BOOLEAN,
             allowNull: false,
         },
     },
     {
-        tableName: 'respuesta_evaluacion',
+        tableName: 'periodo',
         sequelize: db.getSequelizeMigration(),
         timestamps: false,
     },
 );
 
-export default AnswerTest;
+export default Quarter;
