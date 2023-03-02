@@ -1,17 +1,17 @@
-import AnswerTestComment from 'models/answers_test_comment';
-import AnswerTest from 'models/answers_test.model';
-import Question from 'models/questions.model';
-import QuestionTest from 'models/questions_test.model';
-import Employee from 'models/employes.model';
-import Quarter from 'models/quarters.model';
-import QuarterDetail from 'models/quarters_details.model';
-import Department from 'models/departments.model';
-import Major from 'models/majors.model';
-import Program from 'models/programs.model';
-import Coordinator from 'models/coordinators.model';
-import Student from 'models/students.model';
-import StudentCourse from 'models/students_courses.model';
-import Course from 'models/courses.model';
+import AnswerTestComment from '../models/migration_temp/answers_test_comment';
+import AnswerTest from '../models/migration_temp/answers_test.model';
+import Question from '../models/migration_temp/questions.model';
+import QuestionTest from '../models/migration_temp/questions_test.model';
+import Employee from '../models/migration_temp/employes.model';
+import Quarter from '../models/migration_temp/quarters.model';
+import QuarterDetail from '../models/migration_temp/quarters_details.model';
+import Department from '../models/migration_temp/departments.model';
+import Major from '../models/migration_temp/majors.model';
+import Program from '../models/migration_temp/programs.model';
+import Coordinator from '../models/migration_temp/coordinators.model';
+import Student from '../models/migration_temp/students.model';
+import StudentCourse from '../models/migration_temp/students_courses.model';
+import Course from '../models/migration_temp/courses.model';
 
 import { Request, Response } from 'express';
 

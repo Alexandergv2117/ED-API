@@ -22,5 +22,10 @@ export default class CoordinatorRoutes {
             res.send('Hello World!');
         });
         router.get('/periods/:careerId', Controller.getPeriodsByCareer);
+        router.get('/groups/:profesorId', Controller.getGroupsByProfesor);
+        router.get(
+            '/profesors/average/:periodId',
+            Controller.getProfesorsAverageByPeriod,
+        );
     }
 }

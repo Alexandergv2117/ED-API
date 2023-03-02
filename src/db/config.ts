@@ -45,7 +45,9 @@ class Database {
         try {
             await this.sequelize.authenticate();
             console.log(
-                'Connection to main database has been established successfully.',
+                `Connection to main database ${
+                    process.env.DB_NAME || ''
+                } has been established successfully.`,
             );
         } catch (error) {
             console.error('Unable to connect to the main database:', error);
@@ -54,7 +56,9 @@ class Database {
         try {
             await this.sequelizeMigration.authenticate();
             console.log(
-                'Connection to migration database has been established successfully.',
+                `Connection to migration database ${
+                    process.env.DB_NAME_EVALUA || ''
+                } has been established successfully.`,
             );
         } catch (error) {
             console.error(

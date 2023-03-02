@@ -9,13 +9,44 @@ export default class CoordinatorController {
     ): Promise<Response> {
         try {
             const { careerId } = req.params;
+            console.log(careerId);
             if (!careerId) return res.status(400).send('Missing careerId');
-            if (!careerId.match(/^[0-9a-fA-F]{24}$/))
-                return res.status(400).send('Invalid careerId');
 
             const periods = await Model.getPeriodsByCareer(Number(careerId));
 
-            return res.status(200).send();
+            return res.status(200).send(periods);
+        } catch (error: any) {
+            return res.status(500).send({ message: error.message });
+        }
+    }
+
+    public async getGroupsByProfesor(req: Request, res: Response) {
+        try {
+            const { profesorId } = req.params;
+            if (!profesorId)
+                return res.status(400).send({ Error: 'Missing profesorId' });
+
+            const groups = await Model.getGroupsByProfesor(Number(profesorId));
+
+            return res.status(200).send(groups);
+        } catch (error: any) {
+            return res.status(500).send({ message: error.message });
+        }
+    }
+
+    public async getProfesorsAverageByPeriod(
+        req: Request,
+        res: Response,
+    ): Promise<Response> {
+        try {
+            const { periodId } = req.params;
+            if (!periodId)
+                return res.status(400).send({ Error: 'Missing periodId' });
+
+            const averageProfesors = await Model.getProfesorsAverageByPeriod(
+                Number(periodId),
+            );
+            return res.status(200).send(averageProfesors);
         } catch (error: any) {
             return res.status(500).send({ message: error.message });
         }
