@@ -21,7 +21,7 @@ export default class RouterAPI {
             // add more routes here
             this.authRouter,
             this.coordinatorRoutes,
-            this.adminRoutes
+            this.adminRoutes,
         );
     }
 
@@ -32,7 +32,7 @@ export default class RouterAPI {
         adminRoutes: AdminRoutes,
     ) {
         this.router.use('/auth', authRouter.router);
-        this.router.use('/coordinators', coordinatorRoutes.router);
+        this.router.use('/coordinator', coordinatorRoutes.router);
         this.router.use('/admin', adminRoutes.router);
     }
 }

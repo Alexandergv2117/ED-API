@@ -16,6 +16,6 @@ export default class AdminRoutes {
         router.get('/', (req, res) => {
             res.send('Hello World! from admin');
         });
-        router.post('/upload', upload , Controller.uploadDBF);
+        router.post('/upload', Controller.uploadDBF);
     }
 }
