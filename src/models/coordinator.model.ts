@@ -51,4 +51,17 @@ export default class Coordinator {
                 db.closeConnection();
             });
     }
+    public async getStudentsByGroup(groupId: number) {
+        return db.sequelize
+            .query('CALL getStudentsByGroup(?)', {
+                replacements: [groupId],
+                type: 'RAW',
+            })
+            .then((res) => res)
+            .catch((error) => {
+                console.log(error);
+                return [];
+            })
+            .finally(() => db.closeConnection());
+    }
 }

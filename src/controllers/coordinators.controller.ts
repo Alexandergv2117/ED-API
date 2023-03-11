@@ -51,4 +51,19 @@ export default class CoordinatorController {
             return res.status(500).send({ message: error.message });
         }
     }
+
+    public async getStudentsByGroup(
+        req: Request,
+        res: Response,
+    ): Promise<Response> {
+        try {
+            const { groupId } = req.params;
+            if (!groupId)
+                return res.status(404).send({ Error: 'Missing groupId' });
+            const studentList = await Model.getStudentsByGroup(Number(groupId));
+            return res.status(200).send(studentList);
+        } catch (error: any) {
+            return res.status(500).send({ message: error.message });
+        }
+    }
 }

@@ -27,5 +27,6 @@ export default class CoordinatorRoutes {
             '/profesors/average/:periodId',
             Controller.getProfesorsAverageByPeriod,
         );
+        router.get('/student/list/:groupId', Controller.getStudentsByGroup);
     }
 }
