@@ -1,31 +1,81 @@
 {
-    "env": {
-        "browser": true,
-        "node": true,
-        "es6": true,
-        "PORT": true,
-        "DB_USER": true,
-        "DB_PASSWORD": true,
-        "DB_NAME": true,
-        "DB_HOST": true,
-        "DB_PORT": true
-    },
-    "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint"],
-    "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended"
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "globals": {
+    "PORT": true,
+    "DB_USER": true,
+    "DB_PASSWORD": true,
+    "DB_NAME": true,
+    "DB_HOST": true,
+    "DB_PORT": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "eslint-plugin-tsdoc"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    // Recommended rules from ESLint
+    "no-unused-vars": "off",
+    "no-console": "off",
+    "no-undef": "error",
+    "no-constant-condition": "warn",
+    "comma-dangle": ["error", "never"],
+    "semi": ["error", "always"],
+    "quotes": ["error", "single"],
+    "no-return-await": "error",
+    "require-await": "error",
+    "object-curly-spacing": ["error", "always"],
+    "array-bracket-spacing": ["error", "never"],
+    "max-len": ["error", { "code": 120 }],
+    "no-empty-function": "off",
+    "arrow-body-style": ["error", "as-needed"],
+    "no-use-before-define": "off",
+    "prefer-template": "error",
+    "no-shadow": "off",
+    "no-await-in-loop": "error",
+    "no-useless-constructor": "off",
+    "no-unused-expressions": ["error", { "allowShortCircuit": true }],
+    "consistent-return": "off",
+    "no-nested-ternary": "error",
+    "no-multi-spaces": "error",
+    "space-in-parens": ["error", "never"],
+    "eol-last": ["error", "always"],
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "object-curly-newline": ["error", { "multiline": true }],
+    "space-before-function-paren": [
+      "error",
+      { "anonymous": "always", "named": "never", "asyncArrow": "always" }
     ],
-    "parserOptions": {
-        "ecmaVersion": 2018,
-        "sourceType": "module"
-    },
-    "rules": {
-        // personal rules
-        "no-unused-vars": "warn",
-        "no-console": "warn",
-        "no-undef": "error",
-        "no-constant-condition": "warn"
-    }
+    "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 1 }],
+    "no-param-reassign": "error",
+    "no-restricted-syntax": ["error", "WithStatement"],
+    "prefer-const": "error",
+    "no-underscore-dangle": "off",
+    "tsdoc/syntax": "warn",
+
+    // Recommended rules from @typescript-eslint
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-use-before-define": [
+      "error",
+      { "functions": false }
+    ],
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/restrict-template-expressions": "off",
+    "@typescript-eslint/restrict-plus-operands": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
+  }
 }
