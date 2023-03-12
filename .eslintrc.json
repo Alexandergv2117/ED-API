@@ -51,26 +51,29 @@
     "no-multi-spaces": "error",
     "space-in-parens": ["error", "never"],
     "eol-last": ["error", "always"],
-    "indent": ["error", 2, { "SwitchCase": 1 }],
-    "object-curly-newline": ["error", { "multiline": true }],
-    "space-before-function-paren": [
+    "indent": [
       "error",
-      { "anonymous": "always", "named": "never", "asyncArrow": "always" }
+      2,
+      {
+        "SwitchCase": 1,
+        "ignoredNodes": ["ArrowFunctionExpression > ArrowFunctionExpression"]
+      }
     ],
+    "object-curly-newline": ["error", { "multiline": true }],
+    "space-before-function-paren": ["error", { "anonymous": "always", "named": "never", "asyncArrow": "always" }],
     "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 1 }],
     "no-param-reassign": "error",
     "no-restricted-syntax": ["error", "WithStatement"],
     "prefer-const": "error",
     "no-underscore-dangle": "off",
     "tsdoc/syntax": "warn",
+    "arrow-parens": ["error", "always"],
+    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
 
     // Recommended rules from @typescript-eslint
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-empty-function": "off",
-    "@typescript-eslint/no-use-before-define": [
-      "error",
-      { "functions": false }
-    ],
+    "@typescript-eslint/no-use-before-define": ["error", { "functions": false }],
     "@typescript-eslint/no-unsafe-member-access": "off",
     "@typescript-eslint/no-unsafe-assignment": "off",
     "@typescript-eslint/no-unsafe-call": "off",

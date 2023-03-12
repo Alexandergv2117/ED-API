@@ -1,9 +1,7 @@
-import db from '../db/config';
+// import db from '../db/config';
 class Admin {
-  public async uploadDBF(req: any) {
-    const pilin = 10;
-
-    const { file } = req;
+  public uploadDBF(data: unknown) {
+    console.log(data);
     return 'Archivos recibidos desde model admin';
   }
 }

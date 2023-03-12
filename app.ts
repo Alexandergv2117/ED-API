@@ -24,7 +24,7 @@ export default class App {
     this.app.use(cors(corsOptions));
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: false }));
-    Database.testConnection();
+    void Database.testConnection();
   }
 
   private initializeRoutes(routes: RouterAPI) {

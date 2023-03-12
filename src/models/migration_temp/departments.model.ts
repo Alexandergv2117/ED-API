@@ -16,22 +16,22 @@ Department.init(
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
-      primaryKey: true,
+      primaryKey: true
     },
     departamento: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     abrebiatura: {
       type: DataTypes.STRING,
-      allowNull: false,
-    },
+      allowNull: false
+    }
   },
   {
     tableName: 'departamento',
     sequelize: db.getSequelizeMigration(),
-    timestamps: false,
-  },
+    timestamps: false
+  }
 );
 
 export default Department;

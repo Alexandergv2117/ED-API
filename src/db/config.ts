@@ -22,16 +22,11 @@ class Database {
       dialect: 'mysql'
     });
 
-    this.sequelizeMigration = new Sequelize(
-      dbNameMigration,
-      'root',
-      dbPassword,
-      {
-        host: dbHost,
-        port: dbPort,
-        dialect: 'mysql'
-      }
-    );
+    this.sequelizeMigration = new Sequelize(dbNameMigration, 'root', dbPassword, {
+      host: dbHost,
+      port: dbPort,
+      dialect: 'mysql'
+    });
   }
 
   public static getInstance(): Database {
@@ -44,11 +39,7 @@ class Database {
   public async testConnection(): Promise<void> {
     try {
       await this.sequelize.authenticate();
-      console.log(
-        `Connection to main database ${
-          process.env.DB_NAME || ''
-        } has been established successfully.`
-      );
+      console.log(`Connection to main database ${process.env.DB_NAME || ''} has been established successfully.`);
     } catch (error) {
       console.error('Unable to connect to the main database:', error);
     }
@@ -56,15 +47,10 @@ class Database {
     try {
       await this.sequelizeMigration.authenticate();
       console.log(
-        `Connection to migration database ${
-          process.env.DB_NAME_EVALUA || ''
-        } has been established successfully.`
+        `Connection to migration database ${process.env.DB_NAME_EVALUA || ''} has been established successfully.`
       );
     } catch (error) {
-      console.error(
-        'Unable to connect to the migration database:',
-        error
-      );
+      console.error('Unable to connect to the migration database:', error);
     }
   }
 

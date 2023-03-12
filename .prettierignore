@@ -1,1 +1,3 @@
 #Archivos que seran ignorados por el formateador de codigo prettier
+cors.middleware.ts
+dist

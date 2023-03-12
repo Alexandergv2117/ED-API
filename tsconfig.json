@@ -16,13 +16,6 @@
     "strict": true,
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
-  "include": [
-    "src/**/*",
-    "test/**/*",
-    "jest.config.ts",
-    "app.ts",
-    "index.ts",
-    "./.eslintrc.js"
-  ],
+  "include": ["src/**/*", "test/**/*", "jest.config.ts", "app.ts", "index.ts", "./.eslintrc.js"],
   "exclude": ["node_modules"]
 }

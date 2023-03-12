@@ -11,7 +11,7 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname);
-  },
+  }
 });
 
 export const upload: RequestHandler = multer({ storage: storage }).fields([
@@ -19,7 +19,7 @@ export const upload: RequestHandler = multer({ storage: storage }).fields([
   { name: 'DGRUPO.DBF', maxCount: 1 },
   { name: 'DLISTA.DBF', maxCount: 1 },
   { name: 'DMATER.DBF', maxCount: 1 },
-  { name: 'DPERSO.DBF', maxCount: 1 },
+  { name: 'DPERSO.DBF', maxCount: 1 }
 ]);
 
 export const delFolderTemp = () => {

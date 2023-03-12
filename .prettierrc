@@ -1,8 +1,30 @@
 {
-    "trailingComma": "all",
-    "semi": true,
-    "singleQuote": true,
-    "tabWidth": 2,
-    "useTabs": false,
-    "object-property-newline": [{ "allowMultiplePropertiesPerLine": false }]
+  "singleQuote": true,
+  "trailingComma": "none",
+  "proseWrap": "always",
+  "printWidth": 120,
+  "tabWidth": 2,
+  "semi": true,
+  "useTabs": false,
+  "arrowParens": "avoid",
+  "bracketSameLine": false,
+  "bracketSpacing": true,
+  "endOfLine": "auto",
+  "overrides": [
+    {
+      "files": ".eslintrc",
+      "options": { "parser": "json" }
+    },
+    {
+      "files": "*.ts",
+      "options": {
+        "parser": "typescript",
+        "semi": true,
+        "singleQuote": true,
+        "tabWidth": 2,
+        "trailingComma": "none",
+        "arrowParens": "always"
+      }
+    }
+  ]
 }
