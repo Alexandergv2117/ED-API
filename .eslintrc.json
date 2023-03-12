@@ -12,7 +12,7 @@
     "DB_PORT": true
   },
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "eslint-plugin-tsdoc"],
+  "plugins": ["@typescript-eslint", "eslint-plugin-tsdoc", "prettier"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
