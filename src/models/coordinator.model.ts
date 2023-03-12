@@ -51,4 +51,43 @@ export default class Coordinator {
                 db.closeConnection();
             });
     }
+    public async getAverageGroupByCarrer(careerId: number) {
+        return db.sequelize
+            .query('CALL getAverageGroupByCarrer(?)', {
+                replacements: [careerId],
+                type: 'RAW',
+            })
+            .then((res) => res)
+            .catch((error) => {
+                console.log(error);
+                return [];
+            })
+            .finally();
+    }
+    public async getAverageQuestionByGroup(groupId: number) {
+        return db.sequelize
+            .query('CALL getAverageQuestionByGroup(?)', {
+                replacements: [groupId],
+                type: 'RAW',
+            })
+            .then((res) => res)
+            .catch((error) => {
+                console.log(error);
+                return [];
+            })
+            .finally();
+    }
+    public async getStudentsByGroup(groupId: number) {
+        return db.sequelize
+            .query('CALL getStudentsByGroup(?)', {
+                replacements: [groupId],
+                type: 'RAW',
+            })
+            .then((res) => res)
+            .catch((error) => {
+                console.log(error);
+                return [];
+            })
+            .finally();
+    }
 }
