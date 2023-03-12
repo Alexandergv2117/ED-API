@@ -16,29 +16,27 @@ import Course from '../models/migration_temp/courses.model';
 import { Request, Response } from 'express';
 
 export default class MigrationsController {
-    public async migration(req: Request, res: Response) {
-        try {
-            const answerTestComment = await AnswerTestComment.findAll();
-            const answerTest = await AnswerTest.findAll();
-            const question = await Question.findAll();
-            const questionTest = await QuestionTest.findAll();
-            const employee = await Employee.findAll();
-            const quarter = await Quarter.findAll();
-            const quarterDetail = await QuarterDetail.findAll();
-            const department = await Department.findAll();
-            const major = await Major.findAll();
-            const program = await Program.findAll();
-            const coordinator = await Coordinator.findAll();
-            const student = await Student.findAll();
-            const studentCourse = await StudentCourse.findAll();
-            const course = await Course.findAll();
+  public async migration(req: Request, res: Response) {
+    try {
+      const answerTestComment = await AnswerTestComment.findAll();
+      const answerTest = await AnswerTest.findAll();
+      const question = await Question.findAll();
+      const questionTest = await QuestionTest.findAll();
+      const employee = await Employee.findAll();
+      const quarter = await Quarter.findAll();
+      const quarterDetail = await QuarterDetail.findAll();
+      const department = await Department.findAll();
+      const major = await Major.findAll();
+      const program = await Program.findAll();
+      const coordinator = await Coordinator.findAll();
+      const student = await Student.findAll();
+      const studentCourse = await StudentCourse.findAll();
+      const course = await Course.findAll();
 
-            return res.status(200).send({
-                message: 'MIGRATION ROUTE SUCCESS',
-            });
-        } catch (error) {
-            console.log(error);
-            return res.status(500).send({ message: 'ERROR DURING MIGRATION' });
-        }
+      return res.status(200).send({ message: 'MIGRATION ROUTE SUCCESS' });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).send({ message: 'ERROR DURING MIGRATION' });
     }
+  }
 }
