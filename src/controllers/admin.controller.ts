@@ -6,33 +6,25 @@ import path from 'path';
 export default class AdminController {
   public async uploadDBF(
     req: Request,
-    res: Response
+    res: Response,
   ): Promise<Response | void> {
     try {
       // Usa el middleware de multer para manejar la subida de los archivos
       const localres = upload(req, res, async (err: any) => {
         if (err) {
           console.log(err);
-          return res
-            .status(400)
-            .send({ message: 'Error uploading file(s).' });
+          return res.status(400).send({ message: 'Error uploading file(s).' });
         }
 
         console.log(req.files);
         if (!req.files || Object.keys(req.files).length === 0) {
-          return res
-            .status(400)
-            .send({ message: 'No file(s) were uploaded.' });
+          return res.status(400).send({ message: 'No file(s) were uploaded.' });
         }
         // Aquí puedes acceder a los archivos subidos en `req.files`
         // ejemplo de uso de archivo dbf dalumn.dbf
-        const dbf = await DBFFile.open(
-          path.join('uploads', 'DALUMN.DBF')
-        );
+        const dbf = await DBFFile.open(path.join('uploads', 'DALUMN.DBF'));
         console.log(`DBF file contains ${dbf.recordCount} records.`);
-        console.log(
-          `Field names: ${dbf.fields.map((f) => f.name).join(', ')}`
-        );
+        console.log(`Field names: ${dbf.fields.map((f) => f.name).join(', ')}`);
         let count = 0;
         for await (const record of dbf) {
           console.log(record);
