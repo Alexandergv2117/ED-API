@@ -1,16 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { Request, Response } from 'express';
 import { delFolderTemp, upload } from '../middlewares/multer.middleware'; // Importa el middleware de multer
-// import Model from '../models/admin.model';
-import { DBFFile, FieldDescriptor } from 'dbffile';
+import Model from '../models/admin.model';
+import ErrorHandlerMiddleware, { HandleModelErrorType } from '../middlewares/errorHandler.middleware';
+import { DBFFile } from 'dbffile';
 import path from 'path';
 interface IDBFunction {
   status: number;
   message: string;
 }
-interface IDBF extends FieldDescriptor {
-  name: string;
-}
 export default class AdminController {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private handleModelError: HandleModelErrorType<any[], any> = ErrorHandlerMiddleware.handleModelError;
   public uploadDBF = async (req: Request, res: Response): Promise<Response> => {
     // Usa el middleware de multer para manejar la subida de los archivos
     const localres = await new Promise<IDBFunction>((resolve, reject) => {
@@ -26,16 +28,17 @@ export default class AdminController {
             // Aquí puedes acceder a los archivos subidos en `req.files`
             // ejemplo de uso de archivo dbf dalumn.dbf
             DBFFile.open(path.join('uploads', 'DALUMN.DBF'))
-              .then(async (dbf) => {
-                console.log(`DBF file contains ${dbf.recordCount} records.`);
-                console.log(dbf.fields[0]);
-                console.log(`Field names: ${dbf.fields.map((f: IDBF) => f.name).join(', ')}`);
-                let count = 0;
-                for await (const record of dbf) {
-                  console.log(record);
-                  count++;
-                  if (count === 2) break;
-                }
+              .then((dbf) => {
+                dbf
+                  .readRecords()
+                  .then(async (records) => {
+                    console.log(`Registros: ${records.length}`);
+
+                    await this.registerStudents(records);
+                  })
+                  .catch((error) => {
+                    console.log(`Error al leer registros: ${error.message}`);
+                  });
                 delFolderTemp();
                 resolve({ status: 200, message: 'Archivos recibidos' });
               })
@@ -48,5 +51,10 @@ export default class AdminController {
       });
     });
     return res.status(localres.status).send({ message: localres.message });
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private registerStudents = async (fields: any[]) => {
+    await this.handleModelError(Model.registerStudents)(fields);
   };
 }

@@ -44,7 +44,8 @@ export default class CoordinatorController {
   public getStudentsByGroup = async (req: Request, res: Response): Promise<Response> => {
     const { groupId } = req.params;
     if (!groupId) return res.status(404).send({ Error: 'Missing groupId' });
-    const { data } = await this.handleModelError(Model.getStudentsByGroup)(Number(groupId));
+    const { success, data, message } = await this.handleModelError(Model.getStudentsByGroup)(Number(groupId));
+    if (!success) return res.status(500).send({ Error: message });
     return res.status(200).send(data);
   };
 }

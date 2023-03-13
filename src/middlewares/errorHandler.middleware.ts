@@ -14,8 +14,10 @@ class ErrorHandlerMiddleware {
     async (req: Request, res: Response, next: NextFunction) => {
       try {
         await fn(req, res, next);
-      } catch (error: unknown) {
+      } catch (error: any) {
+        console.log('\n\n');
         console.log(error);
+        console.log('\n\n');
         if (error instanceof Error) {
           return res.status(500).send({ message: error.message });
         } else {
@@ -33,9 +35,11 @@ class ErrorHandlerMiddleware {
           return { success: false, message: 'SP_Error', data: result };
         }
         return { success: true, message: 'Success message', data: result };
-      } catch (error: unknown) {
-        console.log(error);
-        return { success: false, message: 'Internal server error', data: [] };
+      } catch (error: any) {
+        console.log('\n\n');
+        console.log(error?.parent?.sqlMessage || error);
+        console.log('\n\n');
+        return { success: false, message: error?.parent?.sqlMessage || 'Error Database', data: [] };
       }
     };
 }

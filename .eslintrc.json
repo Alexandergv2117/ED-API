@@ -59,7 +59,6 @@
         "ignoredNodes": ["ArrowFunctionExpression > ArrowFunctionExpression"]
       }
     ],
-    "object-curly-newline": ["error", { "multiline": true }],
     "space-before-function-paren": ["error", { "anonymous": "always", "named": "never", "asyncArrow": "always" }],
     "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 1 }],
     "no-param-reassign": "error",
