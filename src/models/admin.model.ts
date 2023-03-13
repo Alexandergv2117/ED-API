@@ -1,6 +1,8 @@
 import { DBFFile } from 'dbffile';
 import { Student } from '../db/models/Student';
 import { Subject } from '../db/models/Subject';
+import { Group } from '../db/models/Group';
+import { Period } from '../db/models/Period';
 import { deleteFile } from '../lib/files';
 
 class Admin {
@@ -39,16 +41,41 @@ class Admin {
         nombre_materia: row.MATNOM,
         nombre_corto_materia: row.MATCVE
       }));
-      console.table(data);
 
       await Subject.bulkCreate(data, { ignoreDuplicates: true });
 
       deleteFile(dir);
 
       console.log('Materias registradas correctamente');
-
     } catch (error) {
       console.log(`Error al registrar las materias: ${error}`);
+    }
+  };
+
+  public registerGroupAndPeriod = async (dir: string) => {
+    try {
+      const file = await DBFFile.open(dir, { encoding: 'utf-8' });
+      const rows = await file.readRecords();
+
+      const group = rows
+        .map((row) => ({
+          clave_grupo: row.GPOCVE,
+          id_carrera: row.CARCVE
+        }))
+        .filter((value, index, self) => self.findIndex((v) => v.clave_grupo === value.clave_grupo) === index);
+
+      const period = rows
+        .map((row) => ({
+          id_periodo: row.PDOCVE,
+          Estado: 0
+        }));
+
+      await Group.bulkCreate(group, { ignoreDuplicates: true });
+      await Period.bulkCreate(period, { ignoreDuplicates: true });
+
+      console.log('Periodos y Grupos registrados correctamente');
+    } catch (error) {
+      console.log(`Error al registrar los grupos y periodos: ${error}`);
     }
   };
 }

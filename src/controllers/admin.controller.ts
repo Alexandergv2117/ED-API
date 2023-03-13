@@ -21,7 +21,7 @@ export default class AdminController {
           await Admin.registerStudents(`${this.directorio}/${file}`);
 
         if (file === 'DGRUPO.DBF')
-          console.log(file);
+          await Admin.registerGroupAndPeriod(`${this.directorio}/${file}`);
 
         if (file === 'DLISTA.DBF')
           console.log(file);
