@@ -43,7 +43,6 @@
     "no-use-before-define": "off",
     "prefer-template": "error",
     "no-shadow": "off",
-    "no-await-in-loop": "error",
     "no-useless-constructor": "off",
     "no-unused-expressions": ["error", { "allowShortCircuit": true }],
     "consistent-return": "off",

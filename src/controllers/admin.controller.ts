@@ -16,7 +16,22 @@ export default class AdminController {
         });
       }
 
-      await Admin.registerStudents(`${this.directorio}/DALUMN.DBF`);
+      for (const file of files) {
+        if (file === 'DALUMN.DBF')
+          await Admin.registerStudents(`${this.directorio}/${file}`);
+
+        if (file === 'DGRUPO.DBF')
+          console.log(file);
+
+        if (file === 'DLISTA.DBF')
+          console.log(file);
+
+        if (file === 'DMATER.DBF')
+          await Admin.registerSubjects(`${this.directorio}/${file}`);
+
+        if (file === 'DPERSO.DBF')
+          console.log(file);
+      }
 
       res.status(200).send('Archivos recibidos');
     } catch (error) {
