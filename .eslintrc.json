@@ -46,7 +46,7 @@
     "no-useless-constructor": "off",
     "no-unused-expressions": ["error", { "allowShortCircuit": true }],
     "consistent-return": "off",
-    "no-nested-ternary": "error",
+    "no-nested-ternary": "off",
     "no-multi-spaces": "error",
     "space-in-parens": ["error", "never"],
     "eol-last": ["error", "always"],

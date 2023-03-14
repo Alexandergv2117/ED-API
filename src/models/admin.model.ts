@@ -59,19 +59,30 @@ class Admin {
       const file = await DBFFile.open(dir, { encoding: 'utf-8' });
       const rows = await file.readRecords();
 
-      const group = rows
+      const existingGroups = await Group.findAll({ attributes: ['clave_grupo', 'id_carrera'] });
+      const existingGroupKeys = existingGroups.map((group: any) => `${group.clave_grupo}_${group.id_carrera}`);
+
+      const newData = rows
         .map((row) => ({
           clave_grupo: row.GPOCVE,
-          id_carrera: row.CARCVE
+          id_carrera: row.CARCVE === null || row.CARCVE === 0 ? 1 : row.CARCVE
         }))
-        .filter((value, index, self) => self.findIndex((v) => v.clave_grupo === value.clave_grupo) === index);
+        .filter((group, index, arr) => {
+          const key = `${group.clave_grupo}_${group.id_carrera}`;
+          return (
+            !existingGroupKeys.includes(key) &&
+            group.id_carrera !== null &&
+            arr.findIndex((g) => g.clave_grupo === group.clave_grupo) === index
+          );
+        });
+
+      await Group.bulkCreate(newData);
 
       const period = rows.map((row) => ({
         id_periodo: row.PDOCVE,
         Estado: 0
       }));
 
-      await Group.bulkCreate(group, { ignoreDuplicates: true });
       await Period.bulkCreate(period, { ignoreDuplicates: true });
 
       console.log('Periodos y Grupos registrados correctamente');
