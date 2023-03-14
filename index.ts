@@ -1,27 +1,45 @@
-import App from './app';
+import { Router } from 'express';
+import AuthRouter from './auth.routes';
+import CoordinatorRoutes from './coordinators.routes';
+import AdminRoutes from './admin.routes';
+import QuestionRoutes from './questions.routes';
 
-const AppClass: App = new App();
-const app = AppClass.app;
-let port = AppClass.port;
+export default class RouterAPI {
+  public router: Router;
+  // add more routes here
+  private authRouter: AuthRouter;
+  private coordinatorRoutes: CoordinatorRoutes;
+  private adminRoutes: AdminRoutes;
+  private questionRoutes: QuestionRoutes;
+  
+  constructor() {
+    this.router = Router();
+    // add more routes here
+    this.authRouter = new AuthRouter();
+    this.coordinatorRoutes = new CoordinatorRoutes();
+    this.adminRoutes = new AdminRoutes();
+    this.questionRoutes = new QuestionRoutes();
 
-const startServer = () => {
-  app.listen(port, () => {
-    console.log(
-      `😎 [ED-API]: API is Running 🏁🏁🏁 http://localhost:${AppClass.port} 🏁🏁🏁 ✔`
+    this.initializeRoutes(
+      // add more routes here
+      this.authRouter,
+      this.coordinatorRoutes,
+      this.adminRoutes,
+      this.questionRoutes
     );
-  }).on('error', (err: any) => {
-    if (err.code === 'EADDRINUSE') {
-      console.log(
-        `Port ${port} is already in use. Trying another port...`
-      );
-      port += 1;
-      startServer();
-    } else {
-      console.log(err);
-    }
-  });
-};
+  }
 
-startServer();
-
-export default app;
+  private initializeRoutes(
+    // add more routes here
+    authRouter: AuthRouter,
+    coordinatorRoutes: CoordinatorRoutes,
+    adminRoutes: AdminRoutes,
+    questionRoutes: QuestionRoutes
+  ) {
+    this.router.use('/auth', authRouter.router);
+    this.router.use('/coordinator', coordinatorRoutes.router);
+    this.router.use('/admin', adminRoutes.router);
+    this.router.use('/question', questionRoutes.router);
+  
+  }
+}
