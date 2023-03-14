@@ -1,9 +1,9 @@
 import db from '../db/config';
 export default class Student {
-  public async getTeacherByStudent(matricula: number , idperiodo: number) {
+  public async getTeacherByStudent(matricula: Number , periodoId: Number) {
     return db.sequelize
       .query('CALL getTeacherByStudent(?,?)', {
-        replacements: [matricula,idperiodo],
+        replacements: [matricula,periodoId],
         type: 'RAW'
       })
       .then((res) => res)

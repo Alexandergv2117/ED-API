@@ -8,11 +8,11 @@ export default class StudentController {
     res: Response
   ): Promise<Response> {
     try {
-      const {matricula,idperiodo} = req.params;
-      
-      console.log(matricula,idperiodo);
+      const{matricula,periodoId}= req.params;
+      console.log(matricula,periodoId);
       if (!matricula ) return res.status(400).send('Missing matricula');
-      const periods = await Model.getTeacherByStudent(Number(matricula),Number(idperiodo));
+      if(!periodoId) return res.status(400).send('Missing periodo');
+      const periods = await Model.getTeacherByStudent(Number(matricula) , Number(periodoId));
       return res.status(200).send(periods);
     } catch (error: any) {
       return res.status(500).send({ message: error.message });

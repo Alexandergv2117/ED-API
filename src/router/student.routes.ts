@@ -3,14 +3,14 @@ import StudentController from '../controllers/student.controller';
 
 export default class  Student  {
   public router: Router;
-  private StudentController: StudentController;
+  private studentController: StudentController;
 
   constructor() {
     this.router = Router();
-    this.StudentController = new StudentController();
+    this.studentController = new StudentController();
     this.initializeStudentRoutes(
       this.router,
-      this.StudentController
+      this.studentController
     );
   }
 
@@ -22,6 +22,8 @@ export default class  Student  {
       res.send('Hello World!');
     });
     // master rute
-    router.get('/professors/:matricula', Controller.getTeacherByStudent);
+    router.get('/professors/:matricula,:periodoId', Controller.getTeacherByStudent) ;
+
   }
+
 }

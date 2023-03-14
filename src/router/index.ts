@@ -34,11 +34,11 @@ export default class RouterAPI {
     authRouter: AuthRouter,
     coordinatorRoutes: CoordinatorRoutes,
     adminRoutes: AdminRoutes,
-    studentroutes:StudentRoutes
+    studentRoutes:StudentRoutes
   ) {
     this.router.use('/auth', authRouter.router);
     this.router.use('/coordinator', coordinatorRoutes.router);
     this.router.use('/admin', adminRoutes.router);
-    this.router.use('/student',studentroutes.router);
+    this.router.use('/student',studentRoutes.router);
   }
 }
