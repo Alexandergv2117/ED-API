@@ -22,6 +22,6 @@ export default class  Student  {
       res.send('Hello World!');
     });
     // master rute
-    router.get('/student/professors/:matricula ', Controller.getTeacherByStudent);
+    router.get('/professors/:matricula', Controller.getTeacherByStudent);
   }
 }
