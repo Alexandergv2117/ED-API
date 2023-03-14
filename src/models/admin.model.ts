@@ -3,7 +3,6 @@ import { Student } from '../db/models/Student';
 import { Subject } from '../db/models/Subject';
 import { Group } from '../db/models/Group';
 import { Period } from '../db/models/Period';
-import { deleteFile } from '../lib/files';
 
 class Admin {
   public uploadDBF(data: unknown) {
@@ -25,8 +24,6 @@ class Admin {
 
       await Student.bulkCreate(data, { ignoreDuplicates: true });
 
-      deleteFile(dir);
-
       console.log('Estudiantes registrados exitosamente!');
     } catch (error) {
       console.log('Error al registrar estudiantes:', error);
@@ -37,14 +34,19 @@ class Admin {
     try {
       const fileSubject = await DBFFile.open(dir, { encoding: 'utf-8' });
       const rows = await fileSubject.readRecords();
-      const data = rows.map((row) => ({
-        nombre_materia: row.MATNOM,
-        nombre_corto_materia: row.MATCVE
-      }));
 
-      await Subject.bulkCreate(data, { ignoreDuplicates: true });
+      const existingSubjects = await Subject.findAll({ attributes: ['nombre_materia'] });
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+      const existingSubjectNames = existingSubjects.map((subject: any) => subject.nombre_materia);
 
-      deleteFile(dir);
+      const newData = rows
+        .filter((row) => !existingSubjectNames.includes(row.MATNOM))
+        .map((row) => ({
+          nombre_materia: row.MATNOM,
+          nombre_corto_materia: row.MATCVE
+        }));
+
+      await Subject.bulkCreate(newData);
 
       console.log('Materias registradas correctamente');
     } catch (error) {
@@ -64,11 +66,10 @@ class Admin {
         }))
         .filter((value, index, self) => self.findIndex((v) => v.clave_grupo === value.clave_grupo) === index);
 
-      const period = rows
-        .map((row) => ({
-          id_periodo: row.PDOCVE,
-          Estado: 0
-        }));
+      const period = rows.map((row) => ({
+        id_periodo: row.PDOCVE,
+        Estado: 0
+      }));
 
       await Group.bulkCreate(group, { ignoreDuplicates: true });
       await Period.bulkCreate(period, { ignoreDuplicates: true });
