@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
-import fs from 'fs';
-
+import { deleteDir, leerArchivosEnDirectorio } from '../lib/files';
 import Admin from '../models/admin.model';
 
 export default class AdminController {
@@ -8,7 +7,7 @@ export default class AdminController {
 
   public uploadDBF = async (req: Request, res: Response) => {
     try {
-      const files = (await this.leerArchivosEnDirectorio()) as string[];
+      const files = (await leerArchivosEnDirectorio(this.directorio)) as string[];
 
       if (files.length === 0) {
         return res.status(400).send({
@@ -16,22 +15,18 @@ export default class AdminController {
         });
       }
 
-      for (const file of files) {
-        if (file === 'DALUMN.DBF')
-          await Admin.registerStudents(`${this.directorio}/${file}`);
-
-        if (file === 'DGRUPO.DBF')
-          await Admin.registerGroupAndPeriod(`${this.directorio}/${file}`);
-
-        if (file === 'DLISTA.DBF')
-          console.log(file);
-
-        if (file === 'DMATER.DBF')
-          await Admin.registerSubjects(`${this.directorio}/${file}`);
-
-        if (file === 'DPERSO.DBF')
-          await Admin.registerTeacher(`${this.directorio}/${file}`);
+      if (files.length < 5) {
+        return res.status(400).send({
+          message: 'No se recibieron los 5 archivos'
+        });
       }
+      
+      await Admin.registerStudents(`${this.directorio}/DALUMN.DBF`);
+      await Admin.registerGroupAndPeriod(`${this.directorio}/DGRUPO.DBF`);
+      await Admin.registerSubjects(`${this.directorio}/DMATER.DBF`);
+      await Admin.registerTeacher(`${this.directorio}/DPERSO.DBF`);
+
+      deleteDir(this.directorio);
 
       res.status(200).send('Archivos recibidos');
     } catch (error) {
@@ -41,15 +36,4 @@ export default class AdminController {
       });
     }
   };
-
-  private leerArchivosEnDirectorio = () =>
-    new Promise((resolve) => {
-      fs.readdir(this.directorio, (error, archivos) => {
-        if (error) {
-          resolve([]);
-        } else {
-          resolve(archivos);
-        }
-      });
-    });
 }
