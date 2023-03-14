@@ -3,7 +3,7 @@ import db from '../db/config';
 export default class Questions {
   public async getQuestionByStudent(idQuestion: number) {
     return db.sequelize
-      .query('CALL getQuestionByStudent(?)', {
+      .query('CALL getQuestionsByStudent(?)', {
         replacements: [idQuestion],
         type: 'RAW'
       })

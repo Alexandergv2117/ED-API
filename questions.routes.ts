@@ -23,6 +23,6 @@ export default class QuestionRoutes {
     });
     // master rute
     // ruta de las preguntas
-    router.get('/student/:idCuestionario', Controller.getQuestionByStudent);
+    router.get('/student/:idQuestion', Controller.getQuestionByStudent);
   }  
 }
