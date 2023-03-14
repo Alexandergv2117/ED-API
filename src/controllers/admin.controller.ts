@@ -30,7 +30,7 @@ export default class AdminController {
           await Admin.registerSubjects(`${this.directorio}/${file}`);
 
         if (file === 'DPERSO.DBF')
-          console.log(file);
+          await Admin.registerTeacher(`${this.directorio}/${file}`);
       }
 
       res.status(200).send('Archivos recibidos');

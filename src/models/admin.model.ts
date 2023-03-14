@@ -3,6 +3,7 @@ import { Student } from '../db/models/Student';
 import { Subject } from '../db/models/Subject';
 import { Group } from '../db/models/Group';
 import { Period } from '../db/models/Period';
+import { Teacher } from '../db/models/Teacher';
 
 class Admin {
   public uploadDBF(data: unknown) {
@@ -86,6 +87,26 @@ class Admin {
       await Period.bulkCreate(period, { ignoreDuplicates: true });
 
       console.log('Periodos y Grupos registrados correctamente');
+    } catch (error) {
+      console.log(`Error al registrar los grupos y periodos: ${error}`);
+    }
+  };
+
+  public registerTeacher = async (dir: string) => {
+    try {
+      const file = await DBFFile.open(dir, { encoding: 'utf-8' });
+      const rows = await file.readRecords();
+
+      const data = rows.map((row) => ({
+        id_docente: row.PERCVE,
+        nombre: row.PERNOM,
+        apellido_materno: row.PERAPM,
+        apellido_paterno: row.PERAPP
+      }));
+
+      await Teacher.bulkCreate(data, { ignoreDuplicates: true });
+
+      console.log('Doscentes registrados correctamente');
     } catch (error) {
       console.log(`Error al registrar los grupos y periodos: ${error}`);
     }
